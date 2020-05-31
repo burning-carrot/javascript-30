@@ -68,18 +68,25 @@
         // audio.currentTime = 0;
         // audio.play();
       }
+      // this 는 <div class=keys>
       function onTransitionEnd(e) {
         if (e.propertyName !== "transform") {
           return;
         }
-        this.classList.remove("playing");
+        console.log(this, e.target, e.currentTarget);
+        e.target.classList.remove("playing");
       }
-      window.addEventListener("keydown", onKeyDown);
 
-      const keys = document.querySelectorAll(".key");
-      keys.forEach((key) => {
-        key.addEventListener("transitionend", onTransitionEnd);
-      });
+      const onTransitionEndArrow = (e) => {
+        if (e.propertyName !== "transform") {
+          return;
+        }
+        console.log(this, e.target, e.currentTarget);
+        e.target.classList.remove("playing");
+      };
+      window.addEventListener("keydown", onKeyDown);
+      const keys = document.querySelector(".keys");
+      keys.addEventListener("transitionend", onTransitionEnd);
     </script>
   </body>
 </html>
