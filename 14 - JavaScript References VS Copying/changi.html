@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JS Reference VS Copy</title>
+  </head>
+  <body>
+    <script>
+      // 원시값들의 복사는 일반적이다.
+      // let age = 100;
+      // let age2 = age;
+      // age = 200;
+
+      // let name = 'Wes';
+      // let name2 = name;
+      // name = 'wesley';
+
+      // Let's say we have an array
+      const players = ["Wes", "Sarah", "Ryan", "Poppy"];
+
+      // List 객체의 복사법
+      const team2 = players.slice();
+      const team3 = [].concat(players);
+      const team4 = [...players];
+      const team5 = Array.from(players);
+
+      // 객체의 복사 (얕은복사)
+      const person = {
+        name: "Wes Bos",
+        age: 80,
+      };
+
+      const cap2 = Object.assign({}, person, { number: 99, age: 12 });
+      const cap3 = { ...person };
+
+      console.log(cap2);
+      console.log(cap3);
+
+      // 객체의 깊은 복사
+      const wes = {
+        name: "Wes",
+        age: 100,
+        social: {
+          twitter: "@wesbos",
+          facebook: "wesbos.developer",
+        },
+      };
+
+      const dev2 = JSON.parse(JSON.stringify(wes));
+    </script>
+  </body>
+</html>
