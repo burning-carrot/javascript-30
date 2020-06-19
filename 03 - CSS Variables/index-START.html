@@ -37,6 +37,22 @@
     <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500" />
 
     <style>
+      :root {
+        --base: #ffc600;
+        --spacing: 10px;
+        --blur: 10px;
+      }
+
+      img {
+        padding: var(--spacing);
+        background: var(--base);
+        filter: blur(var(--blur));
+      }
+
+      .hl {
+        color: var(--base);
+      }
+
       /*
       misc styles, nothing to do with CSS variables
     */
@@ -59,6 +75,23 @@
       }
     </style>
 
-    <script></script>
+    <script>
+      const inputs = document.querySelector('.controls');
+
+      function handleUpdate(e) {
+        const { target } = e;
+        if (target.localName !== 'input') return;
+
+        const suffix = target.dataset.sizing || '';
+
+        document.documentElement.style.setProperty(
+          `--${target.name}`,
+          `${target.value}${suffix}`
+        );
+      }
+
+      inputs.addEventListener('change', handleUpdate);
+      inputs.addEventListener('mousemove', handleUpdate);
+    </script>
   </body>
 </html>
